@@ -1,4 +1,7 @@
 import { Role } from './role';
+import { empty } from 'rxjs';
+import { isNull } from 'util';
+import { notEqual } from 'assert';
 
 export class UserContent {
 
@@ -65,5 +68,9 @@ export class UserContent {
     }
     public set date(v: string) {
         this._date = v;
+    }
+
+    public get valid():boolean {
+        return this.address && this.address != "";
     }
 }

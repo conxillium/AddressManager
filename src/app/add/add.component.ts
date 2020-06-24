@@ -11,7 +11,8 @@ import { v1 as uuid } from 'uuid';
   styleUrls: ['./add.component.css']
 })
 export class AddComponent implements OnInit {
-
+  
+  public loginError:boolean;
   public userContent: UserContent;
   public countries: string[] = ['United Arab Emirates', 'Guatemala',
     'Seychelles', 'Norway', 'Russian Federation', 'Mozambique', 'Sri Lanka'];
@@ -33,6 +34,11 @@ export class AddComponent implements OnInit {
   }
 
   onSubmit() {
+    if(!this.userContent.valid){
+      this.loginError = true;
+      return;
+    }
+    
     this.userRoles.filter(x => x.Filter === true).forEach(element => {
       if (element) {
         this.userContent.role += element.Name + ' ';
